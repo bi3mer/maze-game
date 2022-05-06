@@ -1,8 +1,12 @@
 import { WIDTH, HEIGHT, FPS } from "./config";
+import { ECS } from "./Engine/ECS";
+import {Entity} from './Engine/Entity';
 
+let temp = new ECS();
+let a: Entity = 0;
 
 const canvas = document.getElementById('canvas') as HTMLCanvasElement;
-const ctx = canvas.getContext("2d");
+const ctx = canvas.getContext("2d")!;
 
 if(ctx === null) {
     alert('Canvas context not found! Contact admin.')
@@ -19,16 +23,16 @@ function gameLoop(timeStamp : number) {
     fps = Math.round(1 / secondsPassed);
 
     // reset background
-    ctx!.fillStyle = 'black';
-    ctx!.fillRect(0, 0, WIDTH, HEIGHT);
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
     // game engine operations
     // update
 
     // Draw FPS
-    ctx!.font = '12px Arial';
-    ctx!.fillStyle = 'red';
-    ctx!.fillText("FPS: " + fps, WIDTH-60, 30);
+    ctx.font = '12px Arial';
+    ctx.fillStyle = 'red';
+    ctx.fillText("FPS: " + fps, WIDTH-60, 30);
 
     window.requestAnimationFrame(gameLoop);
 }
