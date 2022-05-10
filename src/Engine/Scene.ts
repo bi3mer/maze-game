@@ -1,7 +1,6 @@
 import { Key } from "./Key";
-import { Scene } from "./Scene";
 
-export abstract class ECSScene extends Scene {
+export abstract class Scene {
     /**
      * Default return -1. Any other numbers will tell the game engine to change 
      * the scene to whatever index is returned.
@@ -11,4 +10,7 @@ export abstract class ECSScene extends Scene {
     public abstract update(
         canvas: CanvasRenderingContext2D, 
         keyPresses: Set<Key>): number;
+
+    public abstract onEnter(): void;
+    public abstract onExit(): void;
 };
