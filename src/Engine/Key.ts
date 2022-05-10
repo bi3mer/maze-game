@@ -3,10 +3,10 @@ export enum Key {
     RIGHT,
     DOWN,
     UP,
+    W,
     A,
     S,
     D,
-    F,
     SPACE,
     ESCAPE,
     INVALID
@@ -31,7 +31,14 @@ export function keyCodeToKey(key: string): Key {
             return Key.SPACE;
         case 'Escape':
             return Key.ESCAPE;
-
+        case 'a':
+            return Key.A;
+        case 's':
+            return Key.S;
+        case 'd':
+            return Key.D;
+        case 'w': 
+            return Key.W;
         default:
             console.warn(`Unhandled key: ${key}.`); 
             return Key.INVALID;

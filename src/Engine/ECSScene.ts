@@ -1,4 +1,4 @@
-import { Key } from "./Key";
+import { Game } from "./Game";
 import { Scene } from "./Scene";
 
 export abstract class ECSScene extends Scene {
@@ -8,7 +8,5 @@ export abstract class ECSScene extends Scene {
      * @param canvas 
      * @param keyPresses 
      */
-    public abstract update(
-        canvas: CanvasRenderingContext2D, 
-        keyPresses: Set<Key>): number;
+    public abstract update(game: Game): number;
 };

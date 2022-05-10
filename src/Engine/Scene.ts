@@ -1,4 +1,4 @@
-import { Key } from "./Key";
+import { Game } from "./Game";
 
 export abstract class Scene {
     /**
@@ -7,9 +7,7 @@ export abstract class Scene {
      * @param canvas 
      * @param keyPresses 
      */
-    public abstract update(
-        canvas: CanvasRenderingContext2D, 
-        keyPresses: Set<Key>): number;
+    public abstract update(game: Game): number;
 
     public abstract onEnter(): void;
     public abstract onExit(): void;
