@@ -18,7 +18,7 @@ export class StartMenuScene extends Scene {
         } else {
             game.ctx.font = '40px Arial';
             game.ctx.fillStyle = 'white'
-            game.ctx.fillText('Press Start to Play', game.width/3.5, game.height/2);
+            game.ctx.fillText('Press Space to Play', game.width/3.5, game.height/2);
             return -1;
         }
     }
