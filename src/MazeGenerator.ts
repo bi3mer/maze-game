@@ -14,7 +14,7 @@ function getValidNeighbors(
     for(let i = 0; i < neighbors.length; ++i) {
         const x = neighbors[i][0];
         const y = neighbors[i][1];
-        if(x < 0 || x > size || y < 0 || y >= size) {
+        if(x < 0 || x >= size || y < 0 || y >= size) {
             continue;
         }
 
@@ -45,14 +45,12 @@ export function getMaze(size: number): boolean[][] {
         let visited: Set<string> = new Set();
 
         visited.add('0,0');
-        // visited.add(`${size-1},${size-1}`);
         let stack: Array<[number, number]> = [[0,0]];
-        let temp = 0;
         while (stack.length != 0) {
-            // let currentPosition = stack.pop()!;
-            let stackIndex = Math.floor(Math.random() * stack.length);
-            let currentPosition = stack[stackIndex];
-            stack.splice(stackIndex,1);
+            let currentPosition = stack.pop()!;
+            // let stackIndex = Math.floor(Math.random() * stack.length);
+            // let currentPosition = stack[stackIndex];
+            // stack.splice(stackIndex,1);
 
             // get neighbors and validate that they fit in the bounds and are
             // not visited
@@ -62,9 +60,7 @@ export function getMaze(size: number): boolean[][] {
             // are at least three walls around. Otherwise, it can not be turned
             // into an empty cell
             let modifiableNeighbors: Array<[number, number]> = []
-            console.log('=============================================')
             for(let i = 0; i < validatedNeighbors.length; ++i) {
-                console.log('---------------------')
                 let accessibleNeighbors = getValidNeighbors(size, validatedNeighbors[i], null);
                 console.log(validatedNeighbors[i],accessibleNeighbors.length);
 
@@ -78,8 +74,6 @@ export function getMaze(size: number): boolean[][] {
                     }
                 }
                 
-                console.log(wallCount);
-                console.log('---------------------')
                 if (wallCount > 2) {
                     modifiableNeighbors.push(validatedNeighbors[i]);
                 }
@@ -94,14 +88,14 @@ export function getMaze(size: number): boolean[][] {
             stack.push(currentPosition);
             stack.push(randomNeighbor);
             visited.add(randomNeighbor.join(','))
-
-            console.log(stack.join('||'));
-            temp += 1;
-
-            // if (temp > 20) {
-            //     break;
-            // }
         }
+    
+    // if the bottom right is not reachable, remove walls till path is possible
+    let pos: [number, number] = [size-1, size-1]
+    while (grid[pos[1]][pos[0]]) {
+        grid[pos[1]][pos[0]] = false;
+        --pos[0];
+    }
 
     return grid;
 }
