@@ -1,5 +1,5 @@
-import { StartMenuScene } from "./StartMenuScene";
-import { MazeGameScene } from "./MazeGameScene";
+import { StartMenuScene } from "./Scenes/StartMenuScene";
+import { MazeGameScene } from "./Scenes/MazeGameScene";
 import { Game } from "./Engine/Game";
 
 const game = new Game();

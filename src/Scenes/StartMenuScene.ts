@@ -1,6 +1,6 @@
-import { Game } from "./Engine/Game";
-import { Key } from "./Engine/Key";
-import { Scene } from "./Engine/Scene";
+import { Game } from "../Engine/Game";
+import { Key } from "../Engine/Key";
+import { Scene } from "../Engine/Scene";
 
 export class StartMenuScene extends Scene {
     public sceneIndex: number = 0;

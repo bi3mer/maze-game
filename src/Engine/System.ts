@@ -1,5 +1,6 @@
 import { Entity } from "./Entity"
-import { ECS } from "./ECS"
+import { ECSScene } from "./ECSScene"
+import { Game } from "./Game"
 
 export abstract class System {
 
@@ -14,12 +15,12 @@ export abstract class System {
     /**
      * update() is called on the System every frame.
      */
-    public abstract update(entities: Set<Entity>): void
+    public abstract update(game: Game, entities: Set<Entity>): void
 
     /**
      * The ECS is given to all Systems. Systems contain most of the game
      * code, so they need to be able to create, mutate, and destroy
      * Entities and Components.
      */
-    public ecs!: ECS
+    public ecs!: ECSScene
 }
