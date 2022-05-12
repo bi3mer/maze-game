@@ -9,6 +9,7 @@ export class Game {
     public readonly keyPress = new Set<Key>();
     public readonly width: number;
     public readonly height: number;
+    public delta: number;
 
     constructor() {
         window.addEventListener('keydown', (e: KeyboardEvent) => {
@@ -32,7 +33,7 @@ export class Game {
 
         this.width = canvas.width;
         this.height = canvas.height;
-
+        this.delta = 0;
     }
 
     public addScene(scene: Scene): number {
@@ -41,15 +42,14 @@ export class Game {
     }
 
     public start(): void {
-        let secondsPassed : number;
         let oldTimeStamp : number;
         let fps : number;
 
         const gameLoop = (timeStamp : number) => {
             // Calculate the number of seconds passed since the last frame
-            secondsPassed = (timeStamp - oldTimeStamp) / 1000;
+            this.delta = (timeStamp - oldTimeStamp) / 1000;
             oldTimeStamp = timeStamp;
-            fps = Math.round(1 / secondsPassed);
+            fps = Math.round(1 / this.delta);
 
             // reset background
             this.ctx.fillStyle = 'black';
