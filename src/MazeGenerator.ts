@@ -62,13 +62,11 @@ export function getMaze(size: number): boolean[][] {
             let modifiableNeighbors: Array<[number, number]> = []
             for(let i = 0; i < validatedNeighbors.length; ++i) {
                 let accessibleNeighbors = getValidNeighbors(size, validatedNeighbors[i], null);
-                console.log(validatedNeighbors[i],accessibleNeighbors.length);
 
                 let wallCount = 4-accessibleNeighbors.length; // borders count as a wall
                 for(let j = 0; j < accessibleNeighbors.length; ++j) {
                     const x = accessibleNeighbors[j][0];
                     const y = accessibleNeighbors[j][1];
-                    console.log(x,y,grid[y][x])
                     if (grid[y][x]) {
                         ++wallCount;
                     }

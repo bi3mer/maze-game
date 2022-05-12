@@ -6,6 +6,7 @@ export class Game {
     private sceneIndex: number = 0;
     public readonly ctx: CanvasRenderingContext2D;;
     public readonly keyDown = new Set<Key>();
+    public readonly keyPress = new Set<Key>();
     public readonly width: number;
     public readonly height: number;
 
@@ -20,6 +21,10 @@ export class Game {
         window.addEventListener('keyup', (e: KeyboardEvent) => {
             const k = keyCodeToKey(e.key);
             this.keyDown.delete(k);
+        });
+
+        window.addEventListener('keypress', (e: KeyboardEvent) => {
+            this.keyPress.add(keyCodeToKey(e.key))
         });
 
         const canvas = document.getElementById('canvas') as HTMLCanvasElement;
@@ -71,5 +76,7 @@ export class Game {
             this.sceneIndex = i
             this.scenes[this.sceneIndex].onEnter();
         }
+
+        this.keyPress.clear();
     }
 }

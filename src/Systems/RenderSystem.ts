@@ -7,16 +7,19 @@ import { System } from "../Engine/System";
 export class RenderSystem extends System {
     componentsRequired = new Set<Function>([Position, Render]);
 
-    public entitiesSeenLastUpdate: number = -1
-
     update(game: Game, entities: Set<Entity>): void {
         const xMod = game.width/20;
         const yMod = game.height/20;
 
         for(let entity of entities.values()) {
-            game.ctx.fillStyle = this.ecs.getComponents(entity).get(Render).color;
+            const render = this.ecs.getComponents(entity).get(Render)
             const pos = this.ecs.getComponents(entity).get(Position);
-            game.ctx.fillRect(pos.x*xMod, pos.y*yMod, xMod, yMod);
+            game.ctx.fillStyle = render.color;
+            game.ctx.fillRect(
+                pos.x*xMod + xMod*render.offset, 
+                pos.y*yMod + yMod*render.offset, 
+                xMod*render.size, 
+                yMod*render.size);
         }
     }
 }
